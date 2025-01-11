@@ -103,7 +103,7 @@ class InstallerController extends Controller
                 $workspace = Workspace::find($workspace_id);
                 $workspace->users()->attach([$user->id]);
 
-                // File::delete($installViewPath);
+                File::delete($installViewPath);
                 unlink($sqlDumpPath);
 
                 Artisan::call('cache:clear');

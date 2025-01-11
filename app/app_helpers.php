@@ -622,42 +622,46 @@ if (!function_exists('format_currency')) {
         return $formatted_amount;
     }
 }
-function get_tax_data($tax_id, $total_amount, $currency_symbol = 0)
-{
-    // Check if tax_id is not empty
-    if ($tax_id != '') {
-        // Retrieve tax data from the database using the tax_id
-        $tax = Tax::find($tax_id);
-        // Check if tax data is found
-        if ($tax) {
-            // Get tax rate and type
-            $taxRate = $tax->amount;
-            $taxType = $tax->type;
-            // Calculate tax amount based on tax rate and type
-            $taxAmount = 0;
-            $disp_tax = '';
-            if ($taxType == 'percentage') {
-                $taxAmount = ($total_amount * $tax->percentage) / 100;
-                $disp_tax = format_currency($taxAmount, $currency_symbol) . '(' . $tax->percentage . '%)';
-            } elseif ($taxType == 'amount') {
-                $taxAmount = $taxRate;
-                $disp_tax = format_currency($taxAmount, $currency_symbol);
+
+if (!function_exists('get_tax_data')) {
+    function get_tax_data($tax_id, $total_amount, $currency_symbol = 0)
+    {
+        // Check if tax_id is not empty
+        if ($tax_id != '') {
+            // Retrieve tax data from the database using the tax_id
+            $tax = Tax::find($tax_id);
+            // Check if tax data is found
+            if ($tax) {
+                // Get tax rate and type
+                $taxRate = $tax->amount;
+                $taxType = $tax->type;
+                // Calculate tax amount based on tax rate and type
+                $taxAmount = 0;
+                $disp_tax = '';
+                if ($taxType == 'percentage') {
+                    $taxAmount = ($total_amount * $tax->percentage) / 100;
+                    $disp_tax = format_currency($taxAmount, $currency_symbol) . '(' . $tax->percentage . '%)';
+                } elseif ($taxType == 'amount') {
+                    $taxAmount = $taxRate;
+                    $disp_tax = format_currency($taxAmount, $currency_symbol);
+                }
+                // Return the calculated tax data
+                return [
+                    'taxAmount' => $taxAmount,
+                    'taxType' => $taxType,
+                    'dispTax' => $disp_tax,
+                ];
             }
-            // Return the calculated tax data
-            return [
-                'taxAmount' => $taxAmount,
-                'taxType' => $taxType,
-                'dispTax' => $disp_tax,
-            ];
         }
+        // Return empty data if tax_id is empty or tax data is not found
+        return [
+            'taxAmount' => 0,
+            'taxType' => '',
+            'dispTax' => '',
+        ];
     }
-    // Return empty data if tax_id is empty or tax data is not found
-    return [
-        'taxAmount' => 0,
-        'taxType' => '',
-        'dispTax' => '',
-    ];
 }
+
 if (!function_exists('format_budget')) {
     function format_budget($amount)
     {
@@ -1110,6 +1114,8 @@ if (!function_exists('send_slack_notification')) {
 /**
  * Helper function to get Slack user ID by email
  */
+
+if (!function_exists('get_slack_user_id_by_email')) {
 function get_slack_user_id_by_email($client, $email)
 {
     try {
@@ -1127,6 +1133,7 @@ function get_slack_user_id_by_email($client, $email)
     } catch (\Exception $e) {
         Log::error('Error getting Slack user ID for email ' . $email . ': ' . $e->getMessage());
     }
+}
 }
 if (!function_exists('curl_sms')) {
     function curl_sms($url, $method = 'GET', $data = [], $headers = [])
