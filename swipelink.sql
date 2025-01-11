@@ -460,7 +460,7 @@ CREATE TABLE `languages` (
 --
 
 INSERT INTO `languages` (`id`, `name`, `code`, `created_at`, `updated_at`) VALUES
-(8, 'English', 'en', '2024-07-12 04:19:44', '2024-07-12 04:19:44'),
+(8, 'English', 'en', '2024-07-12 04:19:44', '2024-07-12 04:19:44');
 
 
 -- --------------------------------------------------------
