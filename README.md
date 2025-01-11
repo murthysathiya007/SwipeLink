@@ -1,6 +1,6 @@
-# Taskify SaaS
+# Swipelink
 
-Taskify SaaS is the ultimate solution for project management, task management, CRM, and productivity, built on the robust Laravel 10 framework. It offers a comprehensive suite of features designed to streamline project coordination and enhance productivity for businesses of all sizes.
+Swipelink is the ultimate solution for project management, task management, CRM, and productivity, built on the robust Laravel 10 framework. It offers a comprehensive suite of features designed to streamline project coordination and enhance productivity for businesses of all sizes.
 
 ## Features
 
@@ -28,7 +28,7 @@ Taskify SaaS is the ultimate solution for project management, task management, C
 
 
 ### Global Accessibility
-- **Multi-Language Support:** Offer Taskify SaaS in multiple languages to cater to a global workforce.
+- **Multi-Language Support:** Offer Swipelink in multiple languages to cater to a global workforce.
 - **Multi-Timezone Support:** Display dates and times in the appropriate time zone for each user, ensuring clear communication across different locations.
 - **Customizable Branding:** Tailor the platform's look and feel (logo, colors) to match your company's branding for a professional experience.
 
@@ -42,6 +42,4 @@ Taskify SaaS is the ultimate solution for project management, task management, C
 
 
 ## Support
-
-For support, please contact info@infinitietech.com.
 

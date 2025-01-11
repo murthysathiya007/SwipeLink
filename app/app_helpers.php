@@ -1006,7 +1006,7 @@ if (!function_exists('send_whatsapp_notification')) {
         $msg = get_message($itemData, $recipient, 'whatsapp');
         $whatsapp_settings = get_settings('whatsapp_settings', true);
         $general_settings = get_settings('general_settings');
-        $company_title = $general_settings['company_title'] ?? 'Taskify';
+        $company_title = $general_settings['company_title'] ?? 'Swipelink';
         $client = new GuzzleHttpClient();
         try {
             $response = $client->post('https://graph.facebook.com/v20.0/' . $whatsapp_settings['whatsapp_phone_number_id'] . '/messages', [
@@ -1020,7 +1020,7 @@ if (!function_exists('send_whatsapp_notification')) {
                     'to' => $recipient->country_code . $recipient->phone,
                     'type' => 'template',
                     'template' => [
-                        'name' => 'taskify_saas_notification',
+                        'name' => 'swipelink_notification',
                         'language' => [
                             'code' => 'en'
                         ],
@@ -1080,7 +1080,7 @@ if (!function_exists('send_slack_notification')) {
             $slackMessage = [
                 'channel' => $userId,
                 'text' => $msg,
-                'username' => 'Taskify Notification',
+                'username' => 'Swipelink Notification',
                 'icon_emoji' => ':office:',
             ];
 
@@ -1175,7 +1175,7 @@ if (!function_exists('get_message')) {
         }
         if ($company_title === null) {
             $general_settings = get_settings('general_settings');
-            $company_title = $general_settings['company_title'] ?? 'Taskify-SaaS';
+            $company_title = $general_settings['company_title'] ?? 'Swipelink';
         }
         $siteUrl = request()->getSchemeAndHttpHost() . '/master-panel';
         $fetched_data = Template::where('type', $type)
@@ -1588,7 +1588,7 @@ if (!function_exists('getTitle')) {
         }
         if ($companyTitle === null) {
             $general_settings = get_settings('general_settings');
-            $companyTitle = $general_settings['company_title'] ?? 'Taskify';
+            $companyTitle = $general_settings['company_title'] ?? 'Swipelink';
         }
         $fetched_data = Template::where('type', 'system')
             ->where('name', $data['type'] . '_assignment')

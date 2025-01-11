@@ -69,7 +69,7 @@ use Spatie\Permission\Models\Permission; ?>
                                     </tr>
                                 </thead>
                                 <tbody>
-                                    @foreach (config('taskify.permissions') as $module => $permissions)
+                                    @foreach (config('swipelink.permissions') as $module => $permissions)
                                         <tr>
                                             <td>
                                                 <div class="form-check">

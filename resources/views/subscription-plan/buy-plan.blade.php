@@ -168,7 +168,7 @@
                                                             $checkedModules = [];
                                                             $uncheckedModules = [];
                                                             foreach (
-                                                                config('taskify.modules')
+                                                                config('swipelink.modules')
                                                                 as $moduleName => $moduleData
                                                             ) {
                                                                 $included = in_array($moduleName, $modules);

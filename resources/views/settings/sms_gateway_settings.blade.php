@@ -470,7 +470,7 @@
                             <ul>
                                 <li>In the WhatsApp section, go to "Message Templates"</li>
                                 <li>Click "Create Template"</li>
-                                <li>Name your template "taskify_saas_notification"</li>
+                                <li>Name your template "swipelink_notification"</li>
                                 <li>Set language to English</li>
                                 <li>In the Body section, enter exactly:
                                     <pre>@{{ 1 }}
@@ -520,7 +520,7 @@ Thank you,
                             <li>Go to <a href="https://api.slack.com/apps" target="_blank">https://api.slack.com/apps</a></li>
                             <li>Click "Create New App"</li>
                             <li>Choose "From scratch"</li>
-                            <li>Name your app (e.g., "Taskify Notifier") and select your workspace</li>
+                            <li>Name your app (e.g., "Swipelink Notifier") and select your workspace</li>
                             <li>Click "Create App"</li>
                         </ol>
                         <img src="{{ asset('/storage/images/create-slack-app.png') }}" alt="Create Slack App" class="img-fluid mb-3 mt-2">

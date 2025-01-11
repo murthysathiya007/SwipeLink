@@ -181,7 +181,7 @@
                                 </div>
                                 <!-- Module Checkboxes -->
                                 <div class="row " id="moduleCheckboxes">
-                                    <?php foreach (config('taskify.modules') as $module => $data) : ?>
+                                    <?php foreach (config('swipelink.modules') as $module => $data) : ?>
 
                                     <div class="col-md-4 mt-3  mb-3">
                                         <div class="card mb-3">

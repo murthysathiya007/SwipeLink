@@ -459,7 +459,7 @@ class EstimatesInvoicesController extends Controller
         } elseif (isset($general_settings['company_title']) && !empty($general_settings['company_title'])) {
             $company_title = $general_settings['company_title'];
         } else {
-            $company_title = 'Taskify - SaaS';
+            $company_title = 'Swipelink';
         }
         $client = new Party([
             'name'          => $estimate_invoice->name,

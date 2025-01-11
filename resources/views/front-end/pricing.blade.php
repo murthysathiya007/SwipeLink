@@ -112,7 +112,7 @@
                                                     $checkedModules = [];
                                                     $uncheckedModules = [];
 
-                                                    foreach (config('taskify.modules') as $moduleName => $moduleData) {
+                                                    foreach (config('swipelink.modules') as $moduleName => $moduleData) {
                                                     $included = in_array($moduleName, $modules);
                                                     if ($included) {
                                                     $checkedModules[] = [
@@ -212,7 +212,7 @@
                                                                 $modules = json_decode($plan->modules);
                                                                 $checkedModules = [];
                                                                 $uncheckedModules = [];
-                                                                foreach (config('taskify.modules') as $moduleName => $moduleData) {
+                                                                foreach (config('swipelink.modules') as $moduleName => $moduleData) {
                                                                 $included = in_array($moduleName, $modules);
                                                                 if ($included) {
                                                                 $checkedModules[] = [
@@ -307,7 +307,7 @@
                                                                 $modules = json_decode($plan->modules);
                                                                 $checkedModules = [];
                                                                 $uncheckedModules = [];
-                                                                foreach (config('taskify.modules') as $moduleName => $moduleData) {
+                                                                foreach (config('swipelink.modules') as $moduleName => $moduleData) {
                                                                 $included = in_array($moduleName, $modules);
                                                                 if ($included) {
                                                                 $checkedModules[] = [

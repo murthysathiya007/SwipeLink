@@ -12,10 +12,10 @@
                     <div class="col-md-8 mx-auto text-center">
                         <span class="badge bg-gradient-dark mb-2">{{ get_label('features', 'Features') }}</span>
                         <h3 class="text-white">
-                            {{ get_label('taskify_features_heading', $general_settings['company_title'] . ' Powerful Features for Efficient Project Management') }}
+                            {{ get_label('swipelink_features_heading', $general_settings['company_title'] . ' Powerful Features for Efficient Project Management') }}
                         </h3>
                         <p class="text-center text-white fs-0 fs-md-1 mt-3 mb-3">
-                            {{ get_label('taskify_features_subheading', 'Streamline your team\'s workflow and boost productivity with our comprehensive set of features.') }}
+                            {{ get_label('swipelink_features_subheading', 'Streamline your team\'s workflow and boost productivity with our comprehensive set of features.') }}
                         </p>
                     </div>
                 </div>
@@ -109,7 +109,7 @@
                                             alt="{{ get_label('integrations', 'Integrations') }}" class="icon-size" />
                                         <h4 class="mt-3 mb-2">{{ get_label('integrations', 'Integrations') }}</h4>
                                         <p class="text-muted">
-                                            {{ get_label('integrations_desc', 'Connect Taskify with your favorite tools and services for a seamless workflow experience.') }}
+                                            {{ get_label('integrations_desc', 'Connect Swipelink with your favorite tools and services for a seamless workflow experience.') }}
                                         </p>
                                     </div>
                                     <div class="col-md-6 col-lg-3 text-center">
@@ -135,7 +135,7 @@
                                             alt="{{ get_label('customization', 'Customization') }}" class="icon-size" />
                                         <h4 class="mt-3 mb-2">{{ get_label('customization', 'Customization') }}</h4>
                                         <p class="text-muted">
-                                            {{ get_label('customization_desc', 'Tailor Taskify to your specific needs with our flexible customization options and integrations.') }}
+                                            {{ get_label('customization_desc', 'Tailor Swipelink to your specific needs with our flexible customization options and integrations.') }}
                                         </p>
                                     </div>
                                 </div>

@@ -2,7 +2,7 @@ $(document).ready(function () {
     var options = {
         container: 'mind-map',
         editable: false,
-        theme: 'taskify',
+        theme: 'swipelink',
         mode: 'full',
         support_html: true,
     };

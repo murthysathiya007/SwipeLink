@@ -82,7 +82,7 @@ class InstallerController extends Controller
 
         // Import the SQL dump file
         $installViewPath = resource_path('views/install.blade.php');
-        $sqlDumpPath = base_path('taskify_saas.sql');
+        $sqlDumpPath = base_path('swipelink.sql');
         if (file_exists($sqlDumpPath)) {
             $sql = file_get_contents($sqlDumpPath);
             DB::unprepared($sql);

@@ -43,7 +43,7 @@ class AssignmentNotification extends VerifyEmailBase
 
     protected function getSubject()
     {
-        $company_title = $this->general_settings['company_title'] ?? 'Taskify';
+        $company_title = $this->general_settings['company_title'] ?? 'Swipelink';
         $fetched_data = Template::where('type', 'email')
             ->where('name', $this->data['type'] . '_assignment')
             ->first();
@@ -174,7 +174,7 @@ class AssignmentNotification extends VerifyEmailBase
 
     protected function getContent()
     {
-        $company_title = $this->general_settings['company_title'] ?? 'Taskify';
+        $company_title = $this->general_settings['company_title'] ?? 'Swipelink';
         $siteUrl = request()->getSchemeAndHttpHost() . '/master-panel';
 
         $fetched_data = Template::where('type', 'email')

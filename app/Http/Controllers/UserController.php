@@ -702,7 +702,7 @@ class UserController extends Controller
                         'id' => $user->id,
                         'first_name' => $user->first_name,
                         'last_name' => $user->last_name,
-                    'role' => "<span class='badge bg-label-" . (isset(config('taskify.role_labels')[$user->getRoleNames()->first()]) ? config('taskify.role_labels')[$user->getRoleNames()->first()] : config('taskify.role_labels')['default']) . " me-1'>" . $user->getRoleNames()->first() . "</span>",
+                    'role' => "<span class='badge bg-label-" . (isset(config('swipelink.role_labels')[$user->getRoleNames()->first()]) ? config('swipelink.role_labels')[$user->getRoleNames()->first()] : config('swipelink.role_labels')['default']) . " me-1'>" . $user->getRoleNames()->first() . "</span>",
                     'email' => $user->email,
                     'phone' => $phone,
                     'profile' => $formattedHtml,

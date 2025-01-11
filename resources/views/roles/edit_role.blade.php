@@ -87,7 +87,7 @@ use Spatie\Permission\Models\Permission; ?>
                             </thead>
                             <tbody>
 
-                                @foreach (config('taskify.permissions') as $module => $permissions)
+                                @foreach (config('swipelink.permissions') as $module => $permissions)
                                     <tr>
                                         <td>
                                             <div class="form-check">
@@ -106,7 +106,7 @@ use Spatie\Permission\Models\Permission; ?>
                                                         @if ($guard == 'client')
                                                             <?php
                                                             $permissionModel = Permission::where('name', $permission)->where('guard_name', 'client')->first();
-                                                            
+
                                                             ?>
 
                                                             <input type="checkbox" name="permissions[]"

@@ -25,7 +25,7 @@ class CheckSubscriptionModules
             $subscriptionModules = json_decode($subscription->features);
             $subscriptionModules = $subscriptionModules->modules;
             // Get modules defined in the config file
-            $configModules = array_keys(Config::get('taskify.modules'));
+            $configModules = array_keys(Config::get('swipelink.modules'));
             $extraModules = ['expenses', 'estimates-invoices', 'items', 'payments', 'payment-methods', 'taxes', 'units'];
 
             $configModules = array_merge($extraModules, $configModules);

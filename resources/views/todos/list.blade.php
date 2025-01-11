@@ -69,7 +69,7 @@
                                         </td>
                                         <td>
                                             <span
-                                                class='badge bg-label-{{ config('taskify.priority_labels')[$todo->priority] }} me-1'>{{ $todo->priority }}</span>
+                                                class='badge bg-label-{{ config('swipelink.priority_labels')[$todo->priority] }} me-1'>{{ $todo->priority }}</span>
                                         </td>
                                         <td>
                                             {!! $todo->description !!}

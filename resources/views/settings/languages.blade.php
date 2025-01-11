@@ -1872,12 +1872,12 @@
                             </div>
                             <div class="row">
                                 {!! create_label(
-                                    'taskify_features_heading',
+                                    'swipelink_features_heading',
                                     $general_settings['company_title'] . ' Powerful Features for Efficient Project Management',
                                     Session::get('locale'),
                                 ) !!}
                                 {!! create_label(
-                                    'taskify_features_subheading',
+                                    'swipelink_features_subheading',
                                     'Streamline your team\'s workflow and boost productivity with ' .
                                         $general_settings['company_title'] .
                                         ' comprehensive set of features.',
@@ -1952,7 +1952,7 @@
                                 {!! create_label('integrations', 'Integrations', Session::get('locale')) !!}
                                 {!! create_label(
                                     'integrations_desc',
-                                    'Connect Taskify with your favorite tools and services for a seamless workflow experience.',
+                                    'Connect Swipelink with your favorite tools and services for a seamless workflow experience.',
                                     Session::get('locale'),
                                 ) !!}
                             </div>
@@ -1976,7 +1976,7 @@
                                 {!! create_label('customization', 'Customization', Session::get('locale')) !!}
                                 {!! create_label(
                                     'customization_desc',
-                                    'Tailor Taskify to your specific needs with our flexible customization options and integrations.',
+                                    'Tailor Swipelink to your specific needs with our flexible customization options and integrations.',
                                     Session::get('locale'),
                                 ) !!}
                             </div>
@@ -2154,7 +2154,7 @@
                                 {!! create_label('subscription_history', 'Subscription History', Session::get('locale')) !!}
                                 {!! create_label('explore_more_features', 'Explore More Features', Session::get('locale')) !!}
                                 {!! create_label(
-                                    'taskify_features_heading2',
+                                    'swipelink_features_heading2',
                                     'Empower your workflow with features designed to streamline your day.',
                                     Session::get('locale'),
                                 ) !!}

@@ -851,7 +851,7 @@ class SubscriptionPlan extends Controller
         $plan = Plan::findorFail($id);
         $currency_symbol = (get_settings('general_settings')['currency_symbol']);
         $paypal_settings = get_settings('pay_pal_settings');
-        $modules = config('taskify.modules');
+        $modules = config('swipelink.modules');
         return view('subscription-plan.checkout', ['plan' => $plan, 'modules' => $modules, 'tenure' => $tenure, 'currency_symbol' => $currency_symbol, 'paypal_settings' => $paypal_settings]);
     }
     /**

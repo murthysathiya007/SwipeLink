@@ -9,7 +9,7 @@ class CheckInstallation
 {
     public function handle($request, Closure $next)
     {
-        $sqlDumpPath = base_path('taskify_saas.sql');
+        $sqlDumpPath = base_path('swipelink.sql');
         $installViewPath = resource_path('views/install.blade.php');
 
         // Check if the installation has been completed

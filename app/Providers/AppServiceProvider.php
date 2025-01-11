@@ -84,7 +84,7 @@ class AppServiceProvider extends ServiceProvider
             'half_logo' => 'storage/logos/default_half_logo.png',
             'favicon' => 'storage/logos/default_favicon.png',
             'footer_logo' => 'storage/logos/footer_logo.png',
-            'company_title' => 'Taskify - SaaS',
+            'company_title' => 'Swipelink',
             'currency_symbol' => '₹',
             'currency_full_form' => 'Indian Rupee',
             'currency_code' => 'INR',
