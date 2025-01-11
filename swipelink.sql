@@ -1283,7 +1283,7 @@ CREATE TABLE `settings` (
 --
 
 INSERT INTO `settings` (`id`, `variable`, `value`, `created_at`, `updated_at`) VALUES
-(5, 'general_settings', '{\"company_title\":\"Swipelink\",\"support_email\":\"info@infinitietech.com\",\"currency_full_form\":\"Indian Rupee\",\"currency_symbol\":\"$\",\"currency_code\":\"USD\",\"currency_symbol_position\":\"before\",\"currency_format\":\"dot_separated\",\"decimal_points_in_currency\":\"1\",\"timezone\":\"Asia\\/Kolkata\",\"date_format\":\"MM-DD-YYYY|m-d-Y\",\"toast_position\":\"toast-top-right\",\"toast_time_out\":\"5\",\"footer_text\":\"<p>made with \\u2764\\ufe0f by <a href=\\\"https:\\/\\/codecanyon.net\\/user\\/infinitietech\\\" target=\\\"_blank\\\" rel=\\\"noopener\\\">Infinitie Technologies<\\/a><\\/p>\",\"company_address\":\"<p>#237, Time Square Empire, Bhuj Kutch - India<\\/p>\",\"full_logo\":\"\",\"half_logo\":\"\",\"favicon\":\"logos\\/Flabc538OBOxo4gIFsSOwsOwyRi2EaSzjIPZ9mIo.png\",\"footer_logo\":\"logos\\/bUnIHGMoqsPbkiiyVzmoRFGplkKXCg7jDATWJbSd.png\"}', '2023-06-14 07:48:25', '2024-11-19 04:18:42'),
+(5, 'general_settings', '{\"company_title\":\"Swipelink\",\"support_email\":\"info@swipelink.com\",\"currency_full_form\":\"Indian Rupee\",\"currency_symbol\":\"$\",\"currency_code\":\"USD\",\"currency_symbol_position\":\"before\",\"currency_format\":\"dot_separated\",\"decimal_points_in_currency\":\"1\",\"timezone\":\"Asia\\/Kolkata\",\"date_format\":\"MM-DD-YYYY|m-d-Y\",\"toast_position\":\"toast-top-right\",\"toast_time_out\":\"5\",\"footer_text\":\"<p>made with \\u2764\\ufe0f by <a href=\\\"\\\" target=\\\"_blank\\\" rel=\\\"noopener\\\">Swipelink<\\/a><\\/p>\",\"company_address\":\"<p>#001, velachery, chennai - India<\\/p>\",\"full_logo\":\"\",\"half_logo\":\"\",\"favicon\":\"logos\\/Flabc538OBOxo4gIFsSOwsOwyRi2EaSzjIPZ9mIo.png\",\"footer_logo\":\"logos\\/bUnIHGMoqsPbkiiyVzmoRFGplkKXCg7jDATWJbSd.png\"}', '2023-06-14 07:48:25', '2024-11-19 04:18:42'),
 (9, 'pusher_settings', '{\"pusher_app_id\":\"\",\"pusher_app_key\":\"\",\"pusher_app_secret\":\"\",\"pusher_app_cluster\":\"ap2\"}', '2023-06-21 05:33:13', '2024-02-22 23:59:52'),
 (10, 'email_settings', '{\"email\":\"\",\"password\":\"\",\"smtp_host\":\"smtp.googlemail.com\",\"smtp_port\":\"465\",\"email_content_type\":\"text\",\"smtp_encryption\":\"ssl\"}', '2023-06-21 08:43:07', '2023-11-26 22:08:55'),
 (11, 'media_storage_settings', '{\"media_storage_type\":\"local\",\"s3_key\":null,\"s3_secret\":null,\"s3_region\":null,\"s3_bucket\":null}', '2024-01-22 07:03:48', '2024-05-30 10:39:55'),
@@ -1624,15 +1624,7 @@ CREATE TABLE `updates` (
 --
 
 INSERT INTO `updates` (`id`, `version`, `created_at`, `updated_at`) VALUES
-(1, '1.0.0', '2023-10-03 06:26:04', '2023-10-03 06:26:04'),
-(2, '1.0.1', '2024-07-01 04:11:13', '2024-07-01 04:11:18'),
-(3, '1.0.2', '2024-07-02 04:11:21', '2024-07-02 04:11:24'),
-(4, '1.0.3', '2024-08-21 05:08:12', '2024-08-21 05:08:12'),
-(5, '1.0.4', '2024-08-21 05:25:51', '2024-08-21 05:25:51'),
-(6, '1.0.5', '2024-09-04 05:25:51', '2024-09-04 05:25:51'),
-(7, '1.1.0', '2024-09-23 05:37:15', '2024-09-23 05:37:15'),
-(8, '1.1.1', '2024-10-17 06:34:08', '2024-10-17 06:34:08'),
-(9, '1.1.2', '2024-11-19 03:52:48', '2024-11-19 03:52:48');
+(1, '1.0.0', '2023-10-03 06:26:04', '2024-01-01 06:26:04');
 
 -- --------------------------------------------------------
 
