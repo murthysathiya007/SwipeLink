@@ -542,7 +542,7 @@ if (!function_exists('getSuperAdmin')) {
         return $superadmin;
     }
 }
-if (!function_exists('get_subscriptionFeatures')) {
+if (!function_exists('get_subscriptionModules')) {
     function get_subscriptionModules()
     {
         $user = getAuthenticatedUser();
