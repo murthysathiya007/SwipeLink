@@ -34,6 +34,7 @@ use App\Http\Controllers\PaymentsController;
 use App\Http\Controllers\PayslipsController;
 use App\Http\Controllers\PriorityController;
 use App\Http\Controllers\ProjectsController;
+use App\Http\Controllers\ServerController;
 use App\Http\Controllers\SettingsController;
 use App\Http\Controllers\ContractsController;
 use App\Http\Controllers\InstallerController;
@@ -140,6 +141,29 @@ Route::middleware(['CheckInstallation', 'checkRole',])->group(function () {
         Route::get('/home/upcoming-birthdays-calendar', [HomeController::class, 'upcoming_birthdays_calendar']);
         Route::get('/home/upcoming-work-anniversaries-calendar', [HomeController::class, 'upcoming_work_anniversaries_calendar']);
         Route::get('/home/members-on-leave-calendar', [HomeController::class, 'members_on_leave_calendar']);
+
+        //Servers--------------------------------------------------------
+        Route::middleware(['has_workspace', 'customcan:manage_projects'])->group(function () {
+            Route::get('/servers/download-pem/{filename}', [ServerController::class, 'downloadPemFile'])->name('servers.download-pem');
+            Route::get('/servers/list', [ServerController::class, 'index'])->name('servers.index');
+            Route::get('/servers/pull-history', [ServerController::class, 'index'])->name('servers.pull_history');
+            Route::get('/servers/get/{id}', [ServerController::class, 'get'])->name('servers.get');
+            Route::post('/servers/store', [ServerController::class, 'store'])->middleware(['customcan:create_servers', 'log.activity'])->name('servers.store');
+            Route::put('/servers/update', [ServerController::class, 'update'])->middleware(['customcan:edit_servers', 'log.activity'])->name('servers.update');
+            Route::get('/servers/information/{id}', [ServerController::class, 'show'])->middleware(['checkAccess:App\Models\Server,servers,id,servers'])->name('servers.info');
+            Route::delete('/servers/destroy/{id}', [ServerController::class, 'destroy'])
+                ->middleware(['customcan:delete_servers', 'demo_restriction'])->name('servers.destroy');
+            Route::get('/servers/projects/list/{id?}', [ServerController::class, 'list'])->name('servers.projects.list');
+
+
+            Route::post('/servers/project/store', [ServerController::class, 'projectStore'])->middleware(['customcan:create_servers', 'log.activity'])->name('servers.project.store');
+            Route::put('/servers/projects/update', [ServerController::class, 'projectUpdate'])->middleware(['customcan:edit_servers', 'log.activity'])->name('servers.project.update');
+
+
+
+
+        });
+
         //Projects--------------------------------------------------------
         Route::middleware(['has_workspace', 'customcan:manage_projects'])->group(function () {
             Route::get('/projects/{type?}', [ProjectsController::class, 'index'])->where('type', 'favorite')->name('projects.index');
@@ -217,6 +241,7 @@ Route::middleware(['CheckInstallation', 'checkRole',])->group(function () {
                 Route::delete('/tags/destroy_multiple', [TagsController::class, 'destroy_multiple'])->middleware(['customcan:delete_tags', 'demo_restriction', 'log.activity'])->name('tags.destroy_multiple');
             });
         });
+
         // Milestones
         Route::middleware(['has_workspace', 'customcan:manage_milestones'])->group(function () {
             Route::post('/projects/store-milestone', [ProjectsController::class, 'store_milestone'])->middleware(['customcan:create_milestones', 'log.activity'])->name('projects.store_milestone');

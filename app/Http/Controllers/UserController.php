@@ -313,8 +313,8 @@ class UserController extends Controller
     }
     public function login()
     {
-        return view('front-end.login');
-        // return view('auth.login');
+        // return view('front-end.login');
+        return view('auth.login');
     }
 
     public function authenticate(Request $request)

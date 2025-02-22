@@ -42,11 +42,13 @@
                         'payments' => '#create_payment_modal',
                         'priorities' => '#create_priority_modal',
                         'projects' =>'#create_project_modal',
+                        'servers' =>'#create_server_modal',
+                        'server_project' =>'#create_server_project_modal',
                         'tasks' => '#create_task_modal',
                         'workspaces' => '#createWorkspaceModal',
                         'meetings' => '#createMeetingModal',
                     ];
-                    $javascriptVoidTypes = array_merge(array_keys($modalTargets), ['todos', 'tags', 'status', 'leave-requests', 'contract-types', 'payment-methods', 'allowances', 'deductions', 'notes', 'timesheet', 'taxes', 'units', 'items', 'expense-types', 'expenses', 'payments' ,'projects','tasks','workspaces','meetings' ]);
+                    $javascriptVoidTypes = array_merge(array_keys($modalTargets), ['todos', 'tags', 'status', 'leave-requests', 'contract-types', 'payment-methods', 'allowances', 'deductions', 'notes', 'timesheet', 'taxes', 'units', 'items', 'expense-types', 'expenses', 'payments' ,'projects','tasks','workspaces','meetings','server_project' ]);
                     ?>
                     <a class="btn btn-primary m-1"
                         href="<?= in_array($typeSlug, $javascriptVoidTypes) ? 'javascript:void(0)' : '/' . $prefix . (isset($link) && !empty($link) ? '/' . $link : '/' . $typeSlug . '/create') ?>"

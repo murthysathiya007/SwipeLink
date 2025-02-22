@@ -2083,6 +2083,41 @@ $(document).on('click', '#set-default-view', function (e) {
         });
     });
 });
+
+//edit server modal
+$(document).on('click', '.edit-server', function () {
+    var id = $(this).data('id');
+    $('#edit_server_modal').modal('show');
+    $.ajax({
+        url: "/master-panel/servers/get/" + id,
+        type: 'get',
+        headers: {
+            'X-CSRF-TOKEN': $('input[name="_token"]').attr('value')
+        },
+        dataType: 'json',
+        success: function (response) {
+            $('#id').val(response.server.id)
+            $('#server_name').val(response.server.name)
+            $('#server_host').val(response.server.host)
+            $('#server_ssh_username').val(response.server.ssh_username)
+            $('#server_git_username').val(response.server.git_username)
+
+            // Handle PEM file
+            if (response.server.pem_file) {
+                const pemFileName = response.server.pem_file.split('/').pop(); // Extract the filename
+                $('#server_pem_file_display').html(
+                    `<small>Current PEM file: <a href=download-pem/${pemFileName}" target="_blank">${pemFileName}</a></small>`
+                );
+            } else {
+                $('#server_pem_file_display').text("No PEM file uploaded.");
+            }
+        },
+        error: function (xhr, status, error) {
+            console.error(error);
+        }
+    });
+});
+
 //task project select
 $(document).ready(function () {
     $('.selectTaskProject[name="project"]').on('change', function (e) {

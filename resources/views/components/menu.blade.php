@@ -276,6 +276,29 @@ if ($currentRoute) {
                     <div><?= get_label('dashboard', 'Dashboard') ?></div>
                 </a>
             </li>
+            @if ($user->can('manage_servers'))
+                <li
+                    class="menu-item {{ Request::is($prefix . '/servers') || Request::is($prefix . '/pull-history/*') ? 'active open' : '' }}">
+                    <a href="javascript:void(0)" class="menu-link menu-toggle">
+                        <i class="menu-icon tf-icons bx bx-server text-dark"></i>
+                        <div><?= get_label('servers', 'Servers') ?></div>
+                        <!-- Pin Icon -->
+                    </a>
+                    <ul class="menu-sub">
+                        <li
+                            class="menu-item {{ Request::is($prefix . '/servers') || (Request::is($prefix . '/servers/*') && !Request::is($prefix . '/projects/pull-history')) ? 'active' : '' }}">
+                            <a href="{{ route('servers.index') }}" class="menu-link">
+                                <div><?= get_label('manage_servers', 'Manage Servers') ?></div>
+                            </a>
+                        </li>
+                        <li class="menu-item {{ Request::is($prefix . '/projects/pull-history') ? 'active' : '' }}">
+                            <a href="{{ route('servers.pull_history') }}" class="menu-link">
+                                <div><?= get_label('pull_history', 'Pull History') ?></div>
+                            </a>
+                        </li>
+                    </ul>
+                </li>
+            @endif
             @if ($user->can('manage_projects'))
                 <li
                     class="menu-item {{ Request::is($prefix . '/projects') || Request::is($prefix . '/tags/*') || Request::is($prefix . '/projects/*') ? 'active open' : '' }}">

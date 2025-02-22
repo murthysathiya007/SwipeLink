@@ -10,6 +10,7 @@
             : 1;
 
     $visibleColumns = getUserPreferences('tasks');
+
 @endphp
 @if ((isset($tasks) && $tasks > 0) || (isset($emptyState) && $emptyState == 0))
     <div class="<?= $flag == 1 ? 'card ' : '' ?>mt-2">

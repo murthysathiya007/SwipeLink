@@ -289,6 +289,189 @@
         </div>
     </div>
 @endif
+@if (Request::is($prefix . '/servers/*'))
+    <div class="modal fade" id="create_server_modal" tabindex="-1" aria-hidden="true">
+        <div class="modal-dialog modal-md" role="document">
+            <form class="modal-content form-submit-event" action="{{ route('servers.store') }}" method="POST">
+                <input type="hidden" name="dnr">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLabel1"><?= get_label('create_server', 'Create Server') ?></h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                @csrf
+                <div class="modal-body">
+                    <div class="row">
+                        <div class="col-12 mb-3">
+                            <label for="name" class="form-label"><?= get_label('server_name', 'Server Name') ?> <span
+                                    class="asterisk">*</span></label>
+                            <input type="text" id="name" class="form-control" name="name"
+                                placeholder="<?= get_label('please_enter_server_name', 'Please enter server name') ?>" />
+                        </div>
+                        <div class="col-12 mb-3">
+                            <label for="host" class="form-label"><?= get_label('host', 'Host') ?> <span
+                                    class="asterisk">*</span></label>
+                            <input type="text" id="host" class="form-control" name="host"
+                                placeholder="<?= get_label('please_enter_host', 'Please enter host') ?>" />
+                        </div>
+                         <div class="col-12 mb-3">
+                            <label for="ssh_username" class="form-label"><?= get_label('ssh_username', 'SSH Username') ?> <span
+                                    class="asterisk">*</span></label>
+                            <input type="text" id="ssh_username" class="form-control" name="ssh_username"
+                                placeholder="<?= get_label('please_enter_ssh_username', 'Please enter ssh username') ?>" />
+                        </div>
+                        <div class="col-12 mb-3">
+                            <label for="pem_file" class="form-label fw-bold"><?= get_label('choose_file','Choose File') ?><span
+                                    class="asterisk">*</span></label> <small class="form-text"><?= get_label('supported_files_pem', 'Supported Files: pem')  ?></small>
+                            <input type="file" name="pem_file" id="pem_file" class="form-control" required>
+                        </div>
+                        <div class="col-12 mb-3">
+                            <label for="git_username" class="form-label"><?= get_label('git_username', 'Git Username') ?> <span
+                                    class="asterisk">*</span></label>
+                            <input type="text" id="git_username" class="form-control" name="git_username"
+                                placeholder="<?= get_label('please_enter_git_username', 'Please enter git username') ?>" />
+                        </div>
+                        <div class="col-12 mb-3">
+                            <label for="git_password" class="form-label"><?= get_label('git_password', 'Git Password') ?> <span
+                                    class="asterisk">*</span></label>
+                            <input type="text" id="git_password" class="form-control" name="git_password"
+                                placeholder="<?= get_label('please_enter_git_password', 'Please enter git password') ?>" />
+                        </div>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-outline-secondary" data-bs-dismiss="modal">
+                        <?= get_label('close', 'Close') ?></label>
+                    </button>
+                    <button type="submit" class="btn btn-primary"
+                        id="submit_btn"><?= get_label('create', 'Create') ?></label></button>
+                </div>
+            </form>
+        </div>
+    </div>
+@endif
+@if (Request::is($prefix . '/servers/*'))
+    <div class="modal fade" id="edit_server_modal" tabindex="-1" aria-hidden="true">
+        <div class="modal-dialog modal-lg" role="document">
+            <form action="{{ route('servers.update') }}" class="form-submit-event modal-content" method="POST">
+                @method('PUT')
+                <input type="hidden" name="id" id="id">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLabel1"><?= get_label('update_server', 'Update Server') ?>
+                    </h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal"
+                        aria-label="Close"></button>
+                </div>
+                @csrf
+                <div class="modal-body">
+                    <div class="row">
+                        <div class="col-12 mb-3">
+                            <label for="name" class="form-label"><?= get_label('server_name', 'Server Name') ?> <span
+                                    class="asterisk">*</span></label>
+                            <input type="text" id="server_name" class="form-control" name="name"  value="{{ old('name') }}"
+                                placeholder="<?= get_label('please_enter_server_name', 'Please enter server name') ?>"required />
+                        </div>
+                        <div class="col-12 mb-3">
+                            <label for="host" class="form-label"><?= get_label('host', 'Host') ?> <span
+                                    class="asterisk">*</span></label>
+                            <input type="text" id="server_host" class="form-control" name="host" required
+                                placeholder="<?= get_label('please_enter_host', 'Please enter host') ?>" />
+                        </div>
+                         <div class="col-12 mb-3">
+                            <label for="ssh_username" class="form-label"><?= get_label('ssh_username', 'SSH Username') ?> <span
+                                    class="asterisk">*</span></label>
+                            <input type="text" id="server_ssh_username" class="form-control" name="ssh_username" required
+                                placeholder="<?= get_label('please_enter_ssh_username', 'Please enter ssh username') ?>" />
+                        </div>
+                        <div class="col-12 mb-3">
+                            <label for="pem_file" class="form-label fw-bold"><?= get_label('choose_file','Choose File') ?><span
+                                    class="asterisk">*</span></label> <small class="form-text"><?= get_label('supported_files_pem', 'Supported Files: pem')  ?></small>
+                            <div id="server_pem_file_display" class="mb-2 text-muted">
+                                <!-- Placeholder for PEM file info -->
+                            </div>
+                            <input type="file" name="pem_file" id="server_pem_file" class="form-control">
+                        </div>
+                        <div class="col-12 mb-3">
+                            <label for="git_username" class="form-label"><?= get_label('git_username', 'Git Username') ?> <span
+                                    class="asterisk">*</span></label>
+                            <input type="text" id="server_git_username" class="form-control" name="git_username" required
+                                placeholder="<?= get_label('please_enter_git_username', 'Please enter git username') ?>" />
+                        </div>
+                        <div class="col-12 mb-3">
+                            <label for="git_password" class="form-label"><?= get_label('git_password', 'Git Password') ?> <span
+                                    class="asterisk">*</span></label>
+                            <input type="text" id="server_git_password" class="form-control" name="git_password"
+                                placeholder="<?= get_label('please_enter_git_password', 'Please enter git password') ?>" />
+                        </div>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-outline-secondary" data-bs-dismiss="modal">
+                        <?= get_label('close', 'Close') ?>
+                    </button>
+                    <button type="submit" id="submit_btn"
+                        class="btn btn-primary"><?= get_label('update', 'Update') ?></button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <div class="modal fade" id="create_server_project_modal" tabindex="-1" aria-hidden="true">
+        <div class="modal-dialog modal-lg" role="document">
+            <form action="{{ route('servers.project.store') }}" class="form-submit-event modal-content" method="POST">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLabel1"><?= get_label('create_task', 'Create Task') ?>
+                    </h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal"
+                        aria-label="Close"></button>
+                </div>
+                @csrf
+                <div class="modal-body">
+                    <div class="row">
+                        <input type="hidden" name="server_id" value="{{  $server->id }}">
+                        <div class="col-md-12 mb-3">
+                            <label for="name" class="form-label"><?= get_label('name', 'Name') ?> <span
+                                    class="asterisk">*</span></label>
+                            <input class="form-control" type="text" name="name"
+                                placeholder="<?= get_label('please_enter_name', 'Please enter name') ?>"
+                                value="{{ old('name') }}">
+                            @error('name')
+                                <span class="text-danger">{{ $message }}</span>
+                            @enderror
+                        </div>
+                        <div class="col-md-12 mb-3">
+                            <label for="path" class="form-label"><?= get_label('path', 'Path') ?> <span
+                                    class="asterisk">*</span></label>
+                            <input class="form-control" type="text" name="path"
+                                placeholder="<?= get_label('please_enter_path', 'Please enter path') ?>"
+                                value="{{ old('path') }}">
+                            @error('path')
+                                <span class="text-danger">{{ $message }}</span>
+                            @enderror
+                        </div>
+                        <div class="col-md-12 mb-3">
+                            <label for="branch" class="form-label"><?= get_label('defualt_branch', 'Defualt Branch') ?> <span
+                                    class="asterisk">*</span></label>
+                            <input class="form-control" type="text" name="branch"
+                                placeholder="<?= get_label('please_enter_branch', 'Please enter Branch') ?>"
+                                value="{{ old('branch') }}">
+                            @error('branch')
+                                <span class="text-danger">{{ $message }}</span>
+                            @enderror
+                        </div>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-outline-secondary" data-bs-dismiss="modal">
+                        <?= get_label('close', 'Close') ?>
+                    </button>
+                    <button type="submit" id="submit_btn"
+                        class="btn btn-primary"><?= get_label('create', 'Create') ?></button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+@endif
 @if (Request::is($prefix . '/tags/manage'))
     <div class="modal fade" id="edit_tag_modal" tabindex="-1" aria-hidden="true">
         <div class="modal-dialog modal-md" role="document">
