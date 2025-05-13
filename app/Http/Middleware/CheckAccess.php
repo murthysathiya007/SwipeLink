@@ -40,7 +40,7 @@ class CheckAccess
         if ($user->$typeKey() instanceof Relation) {
             return $user->$typeKey->contains($typeModel::find($itemId));
         } else {
-            if ($typeKey == 'tasks' || $typeKey == 'payslips' || $typeKey == 'projects' || $typeKey == 'workspaces' || $typeKey == 'meetings' || $typeKey == 'expenses' || $typeKey == 'estimates_invoices') {
+            if ($typeKey == 'tasks' || $typeKey == 'payslips' || $typeKey == 'projects' || $typeKey == 'workspaces' || $typeKey == 'meetings' || $typeKey == 'estimates_invoices') {
                 return $user->$typeKey()->get()->contains($typeModel::find($itemId));
             } else {
                 return $user->$typeKey()->contains($typeModel::find($itemId));

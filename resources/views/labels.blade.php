@@ -46,9 +46,6 @@
      var label_create_plan ="{{ get_label('create_plan_button', 'Create Plan') }}";
      var label_update_plan ="{{ get_label('update_plan_button', 'Update Plan') }}";
      var label_status_not_changed_warning = "{{ get_label('project_status_unchanged_no_update_performed', 'Project status unchanged. No Update performed.') }}";
-     var label_income = "{{ get_label('income', 'Income') }}";
-     var label_expenses = "{{ get_label('expenses', 'Expenses') }}";
-     var label_income_vs_expenses = "{{ get_label('income_vs_expenses', 'Income vs Expenses') }}";
      var label_total = "{{ get_label('total', 'Total') }}";
      var label_all_time = "{{ get_label('all_time', 'All Time') }}";
       var label_searching = <?= json_encode(get_label('searching', 'Searching...')) ?>;

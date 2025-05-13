@@ -525,13 +525,6 @@ if ($currentRoute) {
                                 <div><?= get_label('leaves_report', 'Leaves Report') ?></div>
                             </a>
                         </li>
-                        <li
-                            class="menu-item {{ Request::is($prefix . '/reports/income-vs-expense-report') ? 'active' : '' }}">
-                            <a href="{{ route('reports.income-vs-expense-report') }}" class="menu-link">
-                                <div><?= get_label('income_vs_expense_report', 'Income vs. Expense Report') ?></div>
-                            </a>
-                        </li>
-
                     </ul>
                 </li>
             @endrole

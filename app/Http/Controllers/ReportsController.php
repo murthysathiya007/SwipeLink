@@ -14,7 +14,6 @@ use App\Models\LeaveRequest;
 use Illuminate\Http\Request;
 use Barryvdh\DomPDF\Facade\Pdf;
 use App\Models\EstimatesInvoice;
-use App\Models\Expense;
 use Illuminate\Support\Facades\DB;
 
 class ReportsController extends Controller
@@ -679,86 +678,5 @@ class ReportsController extends Controller
             ->setPaper([0, 0, 2000, 900], 'mm');
 
         return $pdf->download('leaves_report.pdf');
-    }
-    public function showIncomeVsExpenseReport(Request $request)
-    {
-        $reportData = $this->getIncomeVsExpenseReportData($request)->getData();
-
-        // Pass data to view
-        return view('reports.income-vs-expense-report', [
-            'report' => $reportData,
-        ]);
-    }
-    public function getIncomeVsExpenseReportData(Request $request)
-    {
-        // Initialize the query for total income from invoices
-        $invoicesQuery = EstimatesInvoice::query()
-            ->select('id', 'final_total', 'from_date', 'to_date')
-            ->where('status', 'fully_paid')
-            ->where('type', 'invoice')
-            ->where('workspace_id', $this->workspace->id);
-
-        // Apply date filters if provided
-        if ($request->filled('start_date') && $request->filled('end_date')) {
-            $invoicesQuery->whereBetween('to_date', [$request->start_date, $request->end_date]);
-            $invoicesQuery->orWhereBetween('from_date', [$request->start_date, $request->end_date]);
-        }
-
-        // Get detailed income data
-        $invoices = $invoicesQuery->get();
-        $totalIncome = $invoices->sum('final_total');
-
-        // Initialize the query for total expenses
-        $expensesQuery = Expense::query()
-            ->select('id', 'title', 'amount', 'expense_date')
-            ->where('workspace_id', $this->workspace->id);
-
-        // Apply date filters if provided
-        if ($request->filled('start_date') && $request->filled('end_date')) {
-            $expensesQuery->whereBetween('expense_date', [$request->start_date, $request->end_date]);
-        }
-
-        // Get detailed expense data
-        $expenses = $expensesQuery->get();
-        $totalExpenses = $expenses->sum('amount');
-
-        // Calculate profit or loss
-        $profitOrLoss = $totalIncome - $totalExpenses;
-
-        // Prepare detailed report data
-        $report = [
-            'total_income' => format_currency($totalIncome),
-            'total_expenses' => format_currency($totalExpenses),
-            'profit_or_loss' => format_currency($profitOrLoss),
-            'invoices' => $invoices->map(function ($invoice) {
-                return [
-                    'id' => $invoice->id,
-                    "view_route" => route('estimates-invoices.view', ['id' => $invoice->id]),
-                    'amount' => format_currency($invoice->final_total),
-                    'to_date' => $invoice->to_date,
-                    'from_date' => $invoice->from_date,
-                ];
-            }),
-            'expenses' => $expenses->map(function ($expense) {
-                return [
-                    'id' => $expense->id,
-                    'title' => $expense->title,
-                    'amount' => format_currency($expense->amount),
-                    'expense_date' => $expense->expense_date,
-                ];
-            }),
-        ];
-
-        return response()->json($report);
-    }
-
-
-    public function exportIncomeVsExpenseReport(Request $request)
-    {
-        $reportData = $this->getIncomeVsExpenseReportData($request)->getData();
-        $pdf = Pdf::loadView('reports.income-vs-expense-report-pdf', ['report' => $reportData])
-            ->setPaper([0, 0, 2000, 900], 'mm');
-
-        return $pdf->download('income_vs_expense_report.pdf');
     }
 }

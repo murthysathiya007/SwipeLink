@@ -35,12 +35,7 @@ class PaymentsController extends Controller
         $users = $this->workspace->users;
         return view('payments.list', ['payments' => $payments, 'payment_methods' => $payment_methods, 'invoices' => $invoices, 'users' => $users]);
     }
-    public function expense_types(Request $request)
-    {
-        $expense_types = $this->workspace->expense_types();
-        $expense_types = $expense_types->count();
-        return view('expenses.expense_types', ['expense_types' => $expense_types]);
-    }
+
     public function store(Request $request)
     {
         $formFields = $request->validate([
