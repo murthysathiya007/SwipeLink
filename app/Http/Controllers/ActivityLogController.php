@@ -93,8 +93,6 @@ class ActivityLogController extends Controller
         WHEN activity_logs.type = 'tax' THEN taxes.title
         WHEN activity_logs.type = 'unit' THEN units.title
         WHEN activity_logs.type = 'item' THEN items.title
-        WHEN activity_logs.type = 'expense_type' THEN expense_types.title
-        WHEN activity_logs.type = 'expense' THEN expenses.title
         WHEN activity_logs.type = 'milestone' THEN milestones.title
         ELSE '-'
     END AS type_title,
@@ -245,17 +243,9 @@ END AS parent_type_title,
                 $join->on('activity_logs.type_id', '=', 'items.id')
                     ->where('activity_logs.type', '=', 'item');
             })
-            ->leftJoin('expense_types', function ($join) {
-                $join->on('activity_logs.type_id', '=', 'expense_types.id')
-                    ->where('activity_logs.type', '=', 'expense_type');
-            })
             ->leftJoin('milestones', function ($join) {
                 $join->on('activity_logs.type_id', '=', 'milestones.id')
                     ->where('activity_logs.type', '=', 'milestone');
-            })
-            ->leftJoin('expenses', function ($join) {
-                $join->on('activity_logs.type_id', '=', 'expenses.id')
-                    ->where('activity_logs.type', '=', 'expense');
             });
 
         if (!empty($activities)) {

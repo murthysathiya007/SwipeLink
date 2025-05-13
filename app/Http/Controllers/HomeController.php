@@ -7,7 +7,6 @@ use App\Models\Task;
 use App\Models\User;
 use App\Models\Client;
 use App\Models\Status;
-use App\Models\Expense;
 use App\Models\Project;
 use App\Models\Workspace;
 use App\Models\LeaveRequest;
@@ -484,64 +483,5 @@ class HomeController extends Controller
         });
 
         return response()->json($events);
-    }
-    public function income_vs_expense_data(Request $request)
-    {
-        $startDate = $request->get('start_date');
-        $endDate = $request->get('end_date');
-
-        // Determine whether the user has admin access or all data access
-        $estimates_invoices = isAdminOrHasAllDataAccess() ?
-            $this->workspace->estimates_invoices() :
-            $this->user->estimates_invoices();
-
-        // Start building the income query
-        $totalIncomeQuery = $estimates_invoices
-            ->where('status', 'fully_paid')
-            ->where('type', 'invoice');
-
-        // Apply date filtering if both start and end dates are provided
-        if ($startDate && $endDate) {
-            $totalIncomeQuery->where(function ($query) use ($startDate, $endDate) {
-                $query->whereBetween('from_date', [$startDate, $endDate])
-                    ->orWhereBetween('to_date', [$startDate, $endDate]);
-            });
-        }
-
-        // Calculate total income
-        $totalIncome = $totalIncomeQuery->sum('final_total');
-
-        // Start building the expenses query
-        $expenses = $this->workspace->expenses();
-
-        // If the user doesn't have admin access, apply user-based filtering to expenses
-        if (!isAdminOrHasAllDataAccess()) {
-            $expenses->where(function ($query) {
-                $query->where('expenses.created_by', isClient() ? 'c_' . $this->user->id : 'u_' . $this->user->id)
-                    ->orWhere('expenses.user_id', $this->user->id);
-            });
-        }
-
-        // Apply date filtering to expenses if both start and end dates are provided
-        if ($startDate && $endDate) {
-            $expenses->whereBetween('expense_date', [$startDate, $endDate]);
-        }
-
-        // Calculate total expenses
-        $totalExpenses = $expenses->sum('amount');
-
-        // Format numbers to 2 decimal places
-        $totalIncome = number_format($totalIncome, 2, '.', '');
-        $totalExpenses = number_format($totalExpenses, 2, '.', '');
-        $dateLabel = $startDate && $endDate
-            ? format_date(Carbon::parse($startDate))  . ' - ' . format_date(Carbon::parse($endDate))
-            : get_label('all_time', 'All Time');
-        // Return the income and expenses as JSON
-        return response()->json([
-            'total_income' => $totalIncome,
-            'total_expenses' => $totalExpenses,
-            'date_label' => $dateLabel,
-            'currency_symbol' => get_settings('general_settings')['currency_symbol'],
-        ]);
     }
 }

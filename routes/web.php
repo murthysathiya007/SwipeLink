@@ -621,11 +621,6 @@ Route::middleware(['CheckInstallation', 'checkRole',])->group(function () {
                 Route::get('/leaves-report-data', [ReportsController::class, 'getLeavesReportData'])->name('reports.leaves-report-data');
                 Route::get('/export-leaves-report', [ReportsController::class, 'exportLeavesReport'])->name('reports.export-leaves-report');
 
-                //Income Vs Expense Report
-
-                Route::get('/income-vs-expense-report', [ReportsController::class, 'showIncomeVsExpenseReport'])->name('reports.income-vs-expense-report');
-                Route::get('/income-vs-expense-report-data', [ReportsController::class, 'getIncomeVsExpenseReportData'])->name('reports.income-vs-expense-report-data');
-                Route::get('/export-income-vs-expense-report', [ReportsController::class, 'exportIncomeVsExpenseReport'])->name('reports.export-income-vs-expense-report');
             });
         });
         // <------------------------- Master Panel Settings --------------------------------->
@@ -642,7 +637,6 @@ Route::middleware(['CheckInstallation', 'checkRole',])->group(function () {
         Route::get('/priority/search', [PriorityController::class, 'search'])->name('priority.search');
         Route::get('/users/search-users', [UserController::class, 'searchUsers'])->name('users.searchUsers');
         Route::get('/payments/search-invoices', [PaymentsController::class, 'searchInvoices'])->name('payments.searchInvoices');
-        Route::get('/home/income-vs-expense-data', [HomeController::class, 'income_vs_expense_data'])->name('home.income_vs_expense_data');
     });
 });
 // <-------------------------- Super Admin Routes -------------------->

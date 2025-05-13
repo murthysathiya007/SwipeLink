@@ -2834,10 +2834,6 @@
                         {!! create_label( 'rejected_leaves', 'Rejected Leaves', Session::get('locale')) !!}
                         {!! create_label( 'approved_leaves', 'Approved Leaves', Session::get('locale')) !!}
 
-                        {!! create_label( 'income_vs_expense_report', 'Income vs Expense Report', Session::get('locale')) !!}
-                        {!! create_label( 'total_income', 'Total Income', Session::get('locale')) !!}
-                        {!! create_label( 'total_expenses', 'Total Expenses', Session::get('locale')) !!}
-                        {!! create_label( 'profit_or_loss', 'Profit or Loss', Session::get('locale')) !!}
                         {!! create_label( 'date', 'Date', Session::get('locale')) !!}
                         {!! create_label('calendar' , 'Calendar' , Session::get('locale')) !!}
                         {!! create_label('tasks_count' , 'Tasks Count' , Session::get('locale')) !!}
@@ -2869,7 +2865,6 @@
                         {!! create_label('week', 'Week' , Session::get('locale')) !!}
                         {!! create_label('month', 'Month' , Session::get('locale')) !!}
                         {!! create_label('admin_settings','Admin Settings' , Session::get('locale')) !!}
-                        {!! create_label("income_vs_expense","Income vs Expense" , Session::get('locale')) !!}
                         {!! create_label('clear_system_cache', 'Clear System Cache' , Session::get('locale')) !!}
                         {!! create_label('confirm_update_dates', 'Confirm Update Dates' , Session::get('locale')) !!}
                         {!! create_label('manager_alert' , 'As a Manager, user can access and manage Plans, Subscriptions, Transactions, and Customers And Support',Session::get('locale')) !!}

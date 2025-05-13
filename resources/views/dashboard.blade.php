@@ -321,29 +321,6 @@
                 </div>
 
 
-                {{-- Income Expense Chart --}}
-                @if ($auth_user->hasRole('admin'))
-                    <div class="col-md-12 mb-4 mt-0">
-                        <div class="card">
-                            <div class="card-header">
-                                <h5 class="card-title">{{ get_label('income_vs_expense', 'Income vs Expense') }}</h5>
-                                <div class="row d-flex justify-content-end">
-                                    <div class="col-md-3">
-                                        <div class="input-group">
-                                            <label for="date-range"
-                                                class="input-group-text">{{ get_label('select_date_range', 'Select Date Range') }}:</label>
-                                            <input type="text" id="date-range" class="form-control"
-                                                placeholder="Select Date Range">
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="card-body">
-                                <div id="income-expense-chart"></div>
-                            </div>
-                        </div>
-                    </div>
-                @endif
 
 
 

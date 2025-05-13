@@ -26,7 +26,7 @@ class CheckSubscriptionModules
             $subscriptionModules = $subscriptionModules->modules;
             // Get modules defined in the config file
             $configModules = array_keys(Config::get('swipelink.modules'));
-            $extraModules = ['expenses', 'estimates-invoices', 'items', 'payments', 'payment-methods', 'taxes', 'units'];
+            $extraModules = ['estimates-invoices', 'items', 'payments', 'payment-methods', 'taxes', 'units'];
 
             $configModules = array_merge($extraModules, $configModules);
             // Get the current route name
@@ -41,9 +41,6 @@ class CheckSubscriptionModules
             // Check if the current route corresponds to a module defined in the config
             if (in_array($currentRoute, $configModules)) {
                 switch ($currentRoute) {
-                    case 'expenses':
-                        $currentRoute = 'finance';
-                        break;
                     case 'estimates-invoices':
                         $currentRoute = 'finance';
                         break;
