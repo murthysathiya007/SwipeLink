@@ -26,7 +26,6 @@ use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\ReportsController;
 use App\Http\Controllers\SupportController;
 use App\Http\Controllers\UpdaterController;
-use App\Http\Controllers\ExpensesController;
 use App\Http\Controllers\FrontEndController;
 use App\Http\Controllers\LanguageController;
 use App\Http\Controllers\MeetingsController;
@@ -73,6 +72,12 @@ use App\Http\Controllers\SuperAdmin\HomeController as SuperAdminHomeController;
 | contains the "web" middleware group. Now create something great!
 |
 */
+
+
+Route::get('/', function () {
+    return view('trip');
+});
+
 //---------------------------------------------------------------
 Route::get('/documentation', function () {});
 Route::get('/clear-cache', function () {
@@ -525,7 +530,7 @@ Route::middleware(['CheckInstallation', 'checkRole',])->group(function () {
                 Route::get('/payments/list', [PaymentsController::class, 'list'])->name('payments.list');
                 Route::get('/payments/get/{id}', [PaymentsController::class, 'get'])->middleware(['checkAccess:App\Models\Payment,payments,id'])->name('payments.get');
                 Route::post('/payments/update', [PaymentsController::class, 'update'])->middleware(['customcan:edit_payments', 'log.activity'])->name('payments.update');
-                Route::get('/payments/duplicate/{id}', [PaymentsController::class, 'duplicate'])->middleware(['customcan:create_expenses', 'checkAccess:App\Models\Expense,expenses,id,expenses', 'log.activity'])->name('payments.duplicate');
+                Route::get('/payments/duplicate/{id}', [PaymentsController::class, 'duplicate'])->middleware(['log.activity'])->name('payments.duplicate');
                 Route::delete('/payments/destroy/{id}', [PaymentsController::class, 'destroy'])->middleware(['customcan:delete_payments', 'demo_restriction', 'log.activity'])->name('payments.destroy');
                 Route::delete('/payments/destroy_multiple', [PaymentsController::class, 'destroy_multiple'])->middleware(['customcan:delete_payments', 'demo_restriction', 'log.activity'])->name('payments.destroy_multiple');
             });
@@ -560,29 +565,6 @@ Route::middleware(['CheckInstallation', 'checkRole',])->group(function () {
                 Route::delete('/items/destroy/{id}', [ItemsController::class, 'destroy'])->middleware(['customcan:delete_items', 'demo_restriction', 'log.activity'])->name('items.destroy');
                 Route::delete('/items/destroy_multiple', [ItemsController::class, 'destroy_multiple'])->middleware(['customcan:delete_items', 'demo_restriction', 'log.activity'])->name('items.destroy_multiple');
             });
-            //<<<-------------Expenses------------------------>>
-            Route::middleware(['customcan:manage_expenses'])->group(function () {
-                Route::get('/expenses', [ExpensesController::class, 'index'])->name('expenses.index');
-                Route::post('/expenses/store', [ExpensesController::class, 'store'])->middleware(['customcan:create_expenses', 'log.activity'])->name('expenses.store');
-                Route::get('/expenses/list', [ExpensesController::class, 'list'])->name('expenses.list');
-                Route::get('/expenses/get/{id}', [ExpensesController::class, 'get'])->name('expenses.get');
-                Route::post('/expenses/update', [ExpensesController::class, 'update'])->middleware(['customcan:edit_expenses', 'log.activity'])->name('expenses.update');
-                Route::get('/expenses/duplicate/{id}', [ExpensesController::class, 'duplicate'])->middleware(['customcan:create_expenses', 'checkAccess:App\Models\Expense,expenses,id,expenses', 'log.activity'])->name('expenses.duplicate');
-                Route::delete('/expenses/destroy/{id}', [ExpensesController::class, 'destroy'])->middleware(['customcan:delete_expenses', 'demo_restriction', 'checkAccess:App\Models\Expense,expenses,id,expenses', 'log.activity'])->name('expenses.destroy');
-                Route::delete('/expenses/destroy_multiple', [ExpensesController::class, 'destroy_multiple'])->middleware(['customcan:delete_expenses', 'demo_restriction', 'log.activity'])->name('expenses.destroy_multiple');
-                //<<<---------Expenses Type-------------------------------->>>>
-            });
-
-            Route::middleware(['customcan:manage_expense_types'])->group(function () {
-                Route::get('/expenses/expense-types', [ExpensesController::class, 'expense_types'])->name('expenses-type.index');
-                Route::post('/expenses/store-expense-type', [ExpensesController::class, 'store_expense_type'])->middleware(['customcan:create_expense_types', 'log.activity'])->name('expenses-type.store');
-                Route::get('/expenses/expense-types-list', [ExpensesController::class, 'expense_types_list'])->name('expenses-type.list');
-                Route::get('/expenses/get-expense-type/{id}', [ExpensesController::class, 'get_expense_type'])->name('expenses-type.get');
-                Route::post('/expenses/update-expense-type', [ExpensesController::class, 'update_expense_type'])->middleware(['customcan:edit_expense_types', 'log.activity'])->name('expenses-type.update');
-                Route::delete('/expenses/delete-expense-type/{id}', [ExpensesController::class, 'delete_expense_type'])->middleware(['customcan:delete_system_notifications', 'demo_restriction'])->name('expenses-type.destroy');
-                Route::post('/expenses/delete-multiple-expense-type', [ExpensesController::class, 'delete_multiple_expense_type'])->middleware(['customcan:delete_system_notifications', 'demo_restriction'])->name('expenses-type.destroy_multiple');
-            });
-
             Route::middleware(['customcan:manage_system_notifications'])->group(function () {
                 Route::put('/notifications/mark-all-as-read', [NotificationsController::class, 'mark_all_as_read'])->name('notifications.mark_all_as_read');
                 Route::get('/notifications', [NotificationsController::class, 'index'])->name('notifications.index');
